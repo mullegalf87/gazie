@@ -77,7 +77,7 @@ $NomeDB = (defined('NomeDB')) ? NomeDB : 'mysqli';
 //
 // $Host = "mysql.2freehosting.com:3306";
 //
-$Host = (defined('Host')) ? Host : 'localhost';
+$Host = (defined('Host')) ? Host : '127.0.0.1';
 
 //
 // Nome della base di dati a cui ci si connette.
@@ -94,7 +94,7 @@ $User = (defined('User')) ? User : 'root';
 // Parola d'ordine necessaria per accedere alla base di dati
 // in qualità di utente $User.
 //
-$Password = (defined('Password')) ? Password : '';
+$Password = (defined('Password')) ? Password : 'AklkOodX0Rc7LVvs';
 
 //
 // Porta sulla quale è in ascolto il database (normalmente 3306 per mysql, 3307 per mariadb)
