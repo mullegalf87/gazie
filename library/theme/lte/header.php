@@ -312,230 +312,37 @@ setInterval(menu_check_from_modules,<?php echo intval((int)$period*60000);?>);
                     </span>
                 </a>
                 <!-- Header Navbar: style can be found in header.less -->
-                <nav class="navbar navbar-static-top company-color-bright" role="navigation">
-                    <!-- Sidebar toggle button-->
-                    <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
-                        <span class="sr-only">Toggle navigation</span>
-                    </a>
-                    <div class="navbar-custom-menu">
-                        <ul class="nav navbar-nav">
-							<li class='blink'></li>
-                            <?php
-                            //leggo se il modulo è abilitato
-							$res_access_mod = gaz_dbi_dyn_query($gTables['admin_module'].'.access', $gTables['module'].' LEFT JOIN '. $gTables['admin_module'].' ON '. $gTables['module'].'.id='. $gTables['admin_module'].'.moduleid',"adminid='".$admin_aziend["user_name"]."' AND company_id=".$admin_aziend['company_id'],'adminid' ,0,1);
-                            $row_access_mod = gaz_dbi_fetch_array($res_access_mod);
-                            if ($row_access_mod && $row_access_mod['access'] == 3 ) {
-                                //visualizzo la documentazione standard
-								require '../' . $module . '/menu.' . $admin_aziend['lang'] . '.php';
-                                echo '<li><a id="docmodal" href="#myModal" data-toggle="modal" data-target="#doc_modal" title="Documentazione modulo '. $transl[$module]['name'] .'" module="'. $module .'"><i class="fa fa-info-circle"></i><span class="hidden-xs">'.$transl[$module]['name']."</span></a></li>";
-                            }
-                            ?>
-                            <!-- Messages: style can be found in dropdown.less-->
-                            <li class="dropdown messages-menu">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <i class="fa fa-star" style="color: yellow"></i>
-                                    <!--<span class="label label-success">4</span>-->
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li class="header">Funzioni più utilizzate</li>
-                                    <li>
-                                        <!-- inner menu: contains the actual data -->
-                                        <ul class="menu">
-                                            <?php
-                                            $result = gaz_dbi_dyn_query("*", $gTables['menu_usage'], ' company_id="' . $admin_aziend['company_id'] . '" AND adminid="' . $admin_aziend["user_name"] . '" ', ' click DESC, last_use DESC', 0, 8);
-                                            if (gaz_dbi_num_rows($result) > 0) {
-                                                while ($r = gaz_dbi_fetch_array($result)) {
-                                                    $rref = explode('-', $r['transl_ref']);
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <a class="navbar-brand" href="#">Navbar</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
 
-                                                    switch ($rref[1]) {
-                                                        case 'm1':
-                                                            require '../' . $rref[0] . '/menu.' . $admin_aziend['lang'] . '.php';
-                                                            $rref_name = $transl[$rref[0]]['title'];
-                                                            break;
-                                                        case 'm2':
-                                                            require '../' . $rref[0] . '/menu.' . $admin_aziend['lang'] . '.php';
-                                                            $rref_name = $transl[$rref[0]]['m2'][$rref[2]][0];
-                                                            break;
-                                                        case 'm3':
-                                                            require '../' . $rref[0] . '/menu.' . $admin_aziend['lang'] . '.php';
-                                                            $rref_name = $transl[$rref[0]]['m3'][$rref[2]][0];
-                                                            break;
-                                                        case 'sc':
-                                                            require '../' . $rref[0] . '/lang.' . $admin_aziend['lang'] . '.php';
-                                                            $rref_name = $strScript[$rref[2]][$rref[3]];
-                                                            break;
-                                                        default:
-                                                            $rref_name = 'Nome script non trovato';
-                                                            break;
-                                                    }
-                                                    ?>
-                                                    <li><!-- start message -->
-                                                        <a href="<?php
-                                                if ($r["link"] != "")
-                                                    echo '../../modules' . $r["link"];
-                                                else
-                                                    echo "&nbsp;";
-                                                ?>">
-                                                            <div class="pull-left">
-                                                                <i class="fa fa-archive" style="color:#<?php echo $r["color"]; ?>"></i>
-                                                            </div>
-                                                            <h4>
-                                                    <?php echo substr($rref_name, 0, 28); ?>
-                                                                <small style="top: -8px;"><i class="fa fa-thumbs-o-up"></i> <?php echo $r["click"] . ' click'; ?></small>
-                                                            </h4>
-                                                            <p><?php echo substr($r["link"], 0, 38); ?></p>
-                                                        </a>
-                                                    </li>
-        <?php
-    }
-}
-?>
-                                        </ul>
-                                    </li>
-                                    <li class="footer"><a href="../../modules/root/admin.php">Vedi tutte</a></li>
-                                </ul>
-                            </li>
-
-                            <!-- Sezione link più usati -->
-                            <li class="dropdown messages-menu">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <i class="fa fa-clock-o"></i>
-                                    <!--<span class="label label-success">4</span>-->
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li class="header">Ultime funzioni utilizzate</li>
-                                    <li>
-                                        <!-- inner menu: contains the actual data -->
-                                        <ul class="menu">
-                                            <?php
-                                            $res_last = gaz_dbi_dyn_query("*", $gTables['menu_usage'], ' company_id="' . $admin_aziend['company_id'] . '" AND adminid="' . $admin_aziend["user_name"] . '" ', ' last_use DESC, click DESC', 0, 8);
-                                            if (gaz_dbi_num_rows($res_last) > 0) {
-                                                while ($rl = gaz_dbi_fetch_array($res_last)) {
-                                                    $rlref = explode('-', $rl['transl_ref']);
-                                                    switch ($rlref[1]) {
-                                                        case 'm1':
-                                                            require '../' . $rlref[0] . '/menu.' . $admin_aziend['lang'] . '.php';
-                                                            $rlref_name = $transl[$rlref[0]]['title'];
-                                                            break;
-                                                        case 'm2':
-                                                            require '../' . $rlref[0] . '/menu.' . $admin_aziend['lang'] . '.php';
-                                                            $rlref_name = $transl[$rlref[0]]['m2'][$rlref[2]][0];
-                                                            break;
-                                                        case 'm3':
-                                                            require '../' . $rlref[0] . '/menu.' . $admin_aziend['lang'] . '.php';
-                                                            $rlref_name = $transl[$rlref[0]]['m3'][$rlref[2]][0];
-                                                            break;
-                                                        case 'sc':
-                                                            require '../' . $rlref[0] . '/lang.' . $admin_aziend['lang'] . '.php';
-                                                            $rlref_name = $strScript[$rlref[2]][$rlref[3]];
-                                                            break;
-                                                        default:
-                                                            $rlref_name = 'Nome script non trovato';
-                                                            break;
-                                                    }
-                                                    ?>
-                                                    <li>
-                                                        <a href="<?php
-                                                if ($rl["link"] != "")
-                                                    echo '../../modules' . $rl["link"];
-                                                else
-                                                    echo "&nbsp;";
-                                                    ?>">
-                                                            <div class="pull-left">
-                                                                <i class="fa fa-archive" style="color:#<?php echo $rl["color"]; ?>"></i>
-                                                            </div>
-                                                            <h4>
-        <?php
-        if (is_string($rlref_name)) {
-            echo substr($rlref_name, 0, 28);
-        } else {
-            //print_r( $rlref_name);
-            echo 'Nome script non trovato';
-        }
-        ?>
-                                                                <small style="top: -8px;"><i class="fa fa-clock-o"></i> <?php echo gaz_time_from(strtotime($rl["last_use"])); ?></small>
-                                                            </h4>
-                                                            <p><?php echo substr($rl["link"], 0, 38); ?></p>
-                                                        </a>
-                                                    </li>
-        <?php
-    }
-}
-?>
-                                        </ul>
-                                    </li>
-                                    <li class="footer"><a href="../../modules/root/admin.php">Vedi tutte</a></li>
-                                </ul>
-                            </li>
-
-                            <!-- User Account: style can be found in dropdown.less -->
-                            <li class="dropdown user user-menu">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <img src="<?php echo '../root/view.php?table=admin&field=user_name&value=' . $admin_aziend["user_name"]; ?>" class="user-image" alt="User Image">
-                                    <span class="hidden-xs"><?php echo $admin_aziend['user_firstname'] . ' ' . $admin_aziend['user_lastname']; ?></span>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <!-- User image -->
-                                    <li class="user-header">
-                                        <img src="<?php echo '../root/view.php?table=admin&field=user_name&value=' . $admin_aziend["user_name"]; ?>" class="img-circle" alt="User Image">
-                                        <p>
-<?php echo $admin_aziend['user_firstname'] . ' ' . $admin_aziend['user_lastname']; ?>
-                                            <small>
-                                                Questo è il tuo <b><?php echo $admin_aziend['Access']; ?>°</b> accesso<br/>
-                                                La tua password risale al <b><?php echo gaz_format_date($admin_aziend['datpas']); ?></b><br>
-                                            </small>
-                                        </p>
-                                    </li>
-                                    <!-- Menu Body -->
-                                    <li class="user-body">
-                                        <div class="col-xs-4 text-center">
-                                            <a href="../config/admin_aziend.php">
-                                                <img class="img-circle" src="../../modules/root/view.php?table=aziend&value=<?php echo $admin_aziend['company_id']; ?>" width="90" alt="Logo" border="0" >
-                                            </a>
-                                        </div>
-                                        <div class="col-xs-8 text-center" align="center">
-                                            <a href="../../modules/root/admin.php"><?php echo $admin_aziend['ragso1'] . "<br>" . $admin_aziend['ragso2']; ?></a>
-<?php //selectCompany('company_id', $form['company_id'], $form['search']['company_id'], $form['hidden_req'], $script_transl['mesg_co']);  ?>
-                                        </div>
-                                        <!--<div class="col-xs-4 text-center">
-                                          <a href="#">Friends</a>
-                                        </div>-->
-                                    </li>
-                                    <!-- Menu Footer-->
-                                    <li class="user-footer">
-                                        <div class="pull-left">
-                                            <a href="../../modules/config/admin_utente.php?user_name=<?php echo $admin_aziend["user_name"]; ?>&Update" class="btn btn-default btn-flat">Profilo</a>
-                                        </div>
-                                        <div class="pull-right">
-                                            <input name="logout" type="submit" value=" Logout " class="btn btn-default btn-flat">
-                                        </div>
-                                    </li>
-                                </ul>
-                            </li>
-                            <!-- Control Sidebar Toggle Button -->
-<?php
-if ($admin_aziend['Abilit'] == 9) {
-    echo "<li><a href=\"#\" data-toggle=\"control-sidebar\"><i class=\"fa fa-bars\"></i></a></li>";
-} else {
-    echo "<li></li>";
-}
-
-if (!isset($_SESSION['menu_alerts_lastcheck'])||((round(time()/60)-$_SESSION['menu_alerts_lastcheck'])> $period )){ // sono passati $period minuti
-	// non ho mai controllato se ci sono nuovi ordini oppure è passato troppo tempo dall'ultimo controllo vado a farlo
-		echo '<script>menu_check_from_modules();</script>';
-} elseif(isset($_SESSION['menu_alerts']) && count($_SESSION['menu_alerts'])>=1) {
-        foreach($_SESSION['menu_alerts'] as $k=>$v) {
-            // se ho i dati per visualizzare il bottone relativo al modulo sincronizzato faccio il load per crearlo (mod,title,button,label,link,style)
-            if ( is_array($v) && count($v) > 4 ) { // se ho i dati sufficienti creo l'elemento bottone tramite js
-                echo "<script>menu_alerts_check('".$k."','".addslashes($v['title'])."','".addslashes($v['button'])."','".addslashes($v['label'])."','".addslashes($v['link'])."','".$v['style']."');</script>";
-            }
-        }
-}
-?>
-
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Link</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Dropdown
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">Action</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                        </li>
                         </ul>
                     </div>
-                </nav>
+                    </nav>
             </header>
             <!-- Left side column. contains the logo and sidebar -->
             <aside class="main-sidebar">

@@ -247,7 +247,7 @@ echo "<input type=\"hidden\" value=\"" . $form['id_anagra'] . "\" name=\"id_anag
 echo "<input type=\"hidden\" name=\"" . ucfirst($toDo) . "\" value=\"\">";
 $gForm = new GAzieForm();
 if ($toDo == 'insert') {
-    echo "<div align=\"center\" class=\"FacetFormHeaderFont\">" . $script_transl['ins_this'] . ' con ' . $script_transl['codice'] . " n° <input type=\"text\" name=\"codice\" value=\"" . $form['codice'] . "\" align=\"right\" maxlength=\"6\" /></div>\n";
+    // echo "<div align=\"center\" class=\"FacetFormHeaderFont\">" . $script_transl['ins_this'] . ' con ' . $script_transl['codice'] . " n° <input type=\"text\" name=\"codice\" value=\"" . $form['codice'] . "\" align=\"right\" maxlength=\"6\" /></div>\n";
 } else {
     echo "<div align=\"center\" class=\"FacetFormHeaderFont\">" . $script_transl['upd_this'] . " '" . $form['codice'] . "'";
     echo "<input type=\"hidden\" value=\"" . $form['codice'] . "\" name=\"codice\" /></div>\n";
@@ -280,215 +280,122 @@ if (!empty($msg)) {
     echo '</table></div>';
 }
 ?>
-<div class="panel panel-default gaz-table-form div-bordered">
-  <div class="container-fluid">
-  <ul class="nav nav-pills">
-    <li class="active"><a data-toggle="pill" href="#home">Anagrafica</a></li>
-    <li style="float: right;"><input class="btn btn-warning" name="Submit" type="submit" value="<?php echo ucfirst($script_transl[$toDo]); ?>"></li>
-  </ul>
 
-  <div class="tab-content">
-    <div id="home" class="tab-pane fade in active">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="form-group">
-                    <label for="ragso1" class="col-sm-4 control-label"><?php echo $script_transl['ragso1']; ?> *</label>
-                    <input class="col-sm-8" type="text" value="<?php echo $form['ragso1']; ?>" name="ragso1" minlenght="2" maxlength="50"/>
-                </div>
-            </div>
-        </div><!-- chiude row  -->
-        <div class="row">
-            <div class="col-md-12">
-                <div class="form-group">
-                    <label for="ragso2" class="col-sm-4 control-label"><?php echo $script_transl['ragso2']; ?> </label>
-                    <input class="col-sm-8" type="text" value="<?php echo $form['ragso2']; ?>" name="ragso2" maxlength="50"/>
-                </div>
-            </div>
-        </div><!-- chiude row  -->
-        <div class="row">
-            <div class="col-md-12">
-                <div class="form-group">
-                    <label for="id_contract" class="col-sm-4 control-label"><?php echo $script_transl['id_contract']; ?> </label>
-                    <input class="col-sm-8" type="text" value="<?php echo $form['id_contract']; ?>" name="id_contract" maxlength="4"/>
-                </div>
-            </div>
-        </div><!-- chiude row  -->
-        <div class="row">
-            <div class="col-md-12">
-                <div class="form-group">
-                    <label for="job_title" class="col-sm-4 control-label"><?php echo $script_transl['job_title']; ?> </label>
-                    <input class="col-sm-8" type="text" value="<?php echo $form['job_title']; ?>" name="job_title" maxlength="50"/>
-                </div>
-            </div>
-        </div><!-- chiude row  -->
-        <div class="row">
-            <div class="col-md-12">
-                <div class="form-group">
-                    <label for="Codice_CCNL" class="col-sm-4 control-label"><?php echo $script_transl['Codice_CCNL']; ?> </label>
-                    <input class="col-sm-8" type="text" value="<?php echo $form['Codice_CCNL']; ?>" name="Codice_CCNL" id="search_Codice_CCNL" maxlength="30"/>
-                </div>
-            </div>
-        </div><!-- chiude row  -->
-        <div class="row">
-            <div class="col-md-12">
-                <div class="form-group">
-                    <label for="sexper" class="col-sm-4 control-label"><?php echo $script_transl['sexper']; ?> </label>
-    <?php
-$gForm->variousSelect('sexper', $script_transl['sexper_value'], $form['sexper']);
-    ?>
-                </div>
-            </div>
-        </div><!-- chiude row  -->
-        <div class="row">
-            <div class="col-md-12">
-                <div class="form-group">
-                    <label for="indspe" class="col-sm-4 control-label"><?php echo $script_transl['indspe']; ?> </label>
-                    <input class="col-sm-8" type="text" value="<?php echo $form['indspe']; ?>" name="indspe" maxlength="50"/>
-                </div>
-            </div>
-        </div><!-- chiude row  -->
-        <div class="row">
-            <div class="col-md-12">
-                <div class="form-group">
-                    <label for="capspe" class="col-sm-4 control-label"><?php echo $script_transl['capspe']; ?> </label>
-                    <input class="col-sm-4" type="text" id="search_location-capspe" value="<?php echo $form['capspe']; ?>" name="capspe" maxlength="10"/>
-                </div>
-            </div>
-        </div><!-- chiude row  -->
-        <div class="row">
-            <div class="col-md-12">
-                <div class="form-group">
-                    <label for="citspe" class="col-sm-4 control-label"><?php echo $script_transl['citspe']; ?> </label>
-                    <input class="col-sm-4" type="text" id="search_location" value="<?php echo $form['citspe']; ?>" name="citspe" maxlength="60"/>
-                    <div class="text-right"><input class="col-sm-1" type="text" id="search_location-prospe" value="<?php echo $form['prospe']; ?>" name="prospe" maxlength="2"/></div>
-                </div>
-            </div>
-        </div><!-- chiude row  -->
-        <div class="row">
-            <div class="col-md-12">
-                <div class="form-group">
-                    <label for="country" class="col-sm-4 control-label"><?php echo $script_transl['country']; ?> </label>
-    <?php
-$gForm->selectFromDB('country', 'country', 'iso', $form['country'], 'iso', 0, ' - ', 'name');
-    ?>
-                </div>
-            </div>
-        </div><!-- chiude row  -->
-        <div class="row">
-            <div class="col-md-12">
-                <div class="form-group">
-                    <label for="datnas" class="col-sm-4 control-label"><?php echo $script_transl['datnas']; ?> </label>
-    <?php
-$gForm->CalendarPopup('datnas', $form['datnas_D'], $form['datnas_M'], $form['datnas_Y']);
-    ?>
-                </div>
-            </div>
-        </div><!-- chiude row  -->
-        <div class="row">
-            <div class="col-md-12">
-                <div class="form-group">
-                    <label for="luonas" class="col-sm-4 control-label"><?php echo $script_transl['luonas']; ?> </label>
-                    <input class="col-sm-4" type="text" id="search_luonas" value="<?php echo $form['luonas']; ?>" name="luonas" maxlength="50"/>
-                    <div class="text-right"><input class="col-sm-1" type="text" id="search_pronas" value="<?php echo $form['pronas']; ?>" name="pronas" maxlength="2"/></div>
-                </div>
-            </div>
-        </div><!-- chiude row  -->
-        <div class="row">
-            <div class="col-md-12">
-                <div class="form-group">
-                    <label for="counas" class="col-sm-4 control-label"><?php echo $script_transl['counas']; ?> </label>
-    <?php
-$gForm->selectFromDB('country', 'counas', 'iso', $form['counas'], 'iso', 1, ' - ', 'name');
-    ?>
-                </div>
-            </div>
-        </div><!-- chiude row  -->
-        <div class="row">
-            <div class="col-md-12">
-                <div class="form-group">
-                    <label for="codfis" class="col-sm-4 control-label"><a href="https://telematici.agenziaentrate.gov.it/VerificaCF/Scegli.do?parameter=verificaCf" target="blank"><?php echo $script_transl['codfis']; ?></a></label>
-                    <input class="col-sm-4" type="text" value="<?php echo $form['codfis']; ?>" name="codfis" id="codfis" maxlength="16"/>
-                </div>
-            </div>
-        </div><!-- chiude row  -->
-        <div class="row">
-            <div class="col-md-12">
-                <div class="form-group">
-                    <label for="telefo" class="col-sm-4 control-label"><?php echo $script_transl['telefo']; ?> </label>
-                    <input class="col-sm-4" type="text" value="<?php echo $form['telefo']; ?>" name="telefo" maxlength="50"/>
-                </div>
-            </div>
-        </div><!-- chiude row  -->
-        <div class="row">
-            <div class="col-md-12">
-                <div class="form-group">
-                    <label for="cell" class="col-sm-4 control-label"><?php echo $script_transl['cell']; ?> </label>
-                    <input class="col-sm-4" type="text" value="<?php echo $form['cell']; ?>" name="cell" maxlength="50"/>
-                </div>
-            </div>
-        </div><!-- chiude row  -->
-        <div class="row">
-            <div class="col-md-12">
-                <div class="form-group">
-                    <label for="e_mail" class="col-sm-4 control-label"><?php echo $script_transl['e_mail']; ?></label>
-                    <input class="col-sm-4" type="text" value="<?php echo $form['e_mail']; ?>" name="e_mail" id="email" maxlength="60"/>
-                </div>
-            </div>
-        </div><!-- chiude row  -->
-        <div class="row">
-            <div class="col-md-12">
-                <div class="form-group">
-                    <label for="iban" class="col-sm-4 control-label"><?php echo $script_transl['iban']; ?> </label>
-                    <input class="col-sm-8" type="text" value="<?php echo $form['iban']; ?>" name="iban" id="iban" maxlength="27" />
-                </div>
-            </div>
-        </div><!-- chiude row  -->
-        <div class="row">
-            <div class="col-md-12">
-                <div class="form-group">
-                    <label for="start_date" class="col-sm-4 control-label"><?php echo $script_transl['start_date']; ?> </label>
-                    <input class="col-sm-8" type="text" value="<?php echo $form['start_date']; ?>" name="start_date" id="start_date" maxlength="10" />
-                </div>
-            </div>
-        </div><!-- chiude row  -->
-        <div class="row">
-            <div class="col-md-12">
-                <div class="form-group">
-                    <label for="end_date" class="col-sm-4 control-label"><?php echo $script_transl['end_date']; ?> </label>
-                    <input class="col-sm-8" type="text" value="<?php echo $form['end_date']; ?>" name="end_date" id="end_date" maxlength="10" />
-                </div>
-            </div>
-        </div><!-- chiude row  -->
-        <div class="row">
-            <div class="col-md-12">
-                <div class="form-group">
-                    <label for="last_hourly_cost" class="col-sm-4 control-label"><?php echo $script_transl['last_hourly_cost']; ?> </label>
-                    <input class="col-sm-8" type="number" value="<?php echo $form['last_hourly_cost']; ?>" name="last_hourly_cost" id="last_hourly_cost"  min="0" max="1000" step="0.01" />
-                </div>
-            </div>
-        </div><!-- chiude row  -->
-        <div class="row">
-            <div class="col-md-12">
-                <div class="form-group">
-                    <label for="status" class="col-sm-4 control-label"><?php echo $script_transl['status']; ?> </label>
-    <?php
-$gForm->variousSelect('status', $script_transl['status_value'], $form['status'], '', false);
-    ?>
-                </div>
-            </div>
-        </div><!-- chiude row  -->
-        <div class="row">
-            <div class="col-md-12">
-                <div class="form-group">
-                    <label for="annota" class="col-sm-4 control-label"><?php echo $script_transl['annota']; ?> </label>
-                    <textarea name="annota" rows="2" cols="50" maxlength="3000"><?php echo $form['annota']; ?></textarea>
-                </div>
-            </div>
-        </div><!-- chiude row  -->
+
+    <style>
+        
+    </style>
+    <div class="m-3" id="home">
+        <div class="d-flex flex-nowrap">
+            <label for="codice" class="control-label w-50"><?php echo $script_transl['ins_this']." con ".$script_transl['codice']." n° "; ?> *</label>
+            <input class="form-control w-50" type="text" value="<?php echo $form['codice']; ?>" name="codice" maxlength="6"/>
+        </div>
+        <div class="d-flex flex-nowrap">
+            <label for="ragso1" class="control-label w-50"><?php echo $script_transl['ragso1']; ?> *</label>
+            <input class="form-control w-50" type="text" value="<?php echo $form['ragso1']; ?>" name="ragso1" minlenght="2" maxlength="50"/>
+        </div>
+        <div class="d-flex flex-nowrap">
+            <label for="ragso2" class="control-label w-50"><?php echo $script_transl['ragso2']; ?> </label>
+            <input class="form-control w-50" type="text" value="<?php echo $form['ragso2']; ?>" name="ragso2" maxlength="50"/>
+        </div>
+        <div class="d-flex flex-nowrap">
+            <label for="id_contract" class="control-label w-50"><?php echo $script_transl['id_contract']; ?> </label>
+            <input class="form-control w-50" type="text" value="<?php echo $form['id_contract']; ?>" name="id_contract" maxlength="4"/>
+        </div>
+        <div class="d-flex flex-nowrap">
+            <label for="job_title" class="control-label w-50"><?php echo $script_transl['job_title']; ?> </label>
+            <input class="form-control w-50" type="text" value="<?php echo $form['job_title']; ?>" name="job_title" maxlength="50"/>
+        </div>
+        <div class="d-flex flex-nowrap">
+            <label for="Codice_CCNL" class="control-label w-50"><?php echo $script_transl['Codice_CCNL']; ?> </label>
+            <input class="form-control w-50" type="text" value="<?php echo $form['Codice_CCNL']; ?>" name="Codice_CCNL" id="search_Codice_CCNL" maxlength="30"/>
+        </div>
+        <div class="d-flex flex-nowrap">
+            <label for="sexper" class="control-label w-50"><?php echo $script_transl['sexper']; ?> </label>
+            <?php
+                $gForm->variousSelect('sexper', $script_transl['sexper_value'], $form['sexper']);
+            ?>
+        </div>
+        <div class="d-flex flex-nowrap">
+            <label for="indspe" class="control-label w-50"><?php echo $script_transl['indspe']; ?> </label>
+            <input class="form-control w-50" type="text" value="<?php echo $form['indspe']; ?>" name="indspe" maxlength="50"/>
+        </div>
+        <div class="d-flex flex-nowrap">
+            <label for="capspe" class="control-label w-50"><?php echo $script_transl['capspe']; ?> </label>
+            <input class="form-control w-50" type="text" id="search_location-capspe" value="<?php echo $form['capspe']; ?>" name="capspe" maxlength="10"/>
+        </div>
+        <div class="d-flex flex-nowrap">
+            <label for="citspe" class="control-label w-50"><?php echo $script_transl['citspe']; ?> </label>
+            <input class="form-control w-50" type="text" id="search_location" value="<?php echo $form['citspe']; ?>" name="citspe" maxlength="60"/>
+            <div class="text-right"><input class="form-control w-50" type="text" id="search_location-prospe" value="<?php echo $form['prospe']; ?>" name="prospe" maxlength="2"/></div>
+        </div>
+        <div class="d-flex flex-nowrap">
+            <label for="country" class="control-label w-50"><?php echo $script_transl['country']; ?> </label>
+            <?php
+                $gForm->selectFromDB('country', 'country', 'iso', $form['country'], 'iso', 0, ' - ', 'name');
+            ?>
+        </div>
+        <div class="d-flex flex-nowrap">
+            <label for="datnas" class="control-label w-50"><?php echo $script_transl['datnas']; ?> </label>
+            <?php
+                $gForm->CalendarPopup('datnas', $form['datnas_D'], $form['datnas_M'], $form['datnas_Y']);
+            ?>
+        </div>
+        <div class="d-flex flex-nowrap">
+            <label for="luonas" class="control-label w-50"><?php echo $script_transl['luonas']; ?> </label>
+            <input class="form-control w-50" type="text" id="search_luonas" value="<?php echo $form['luonas']; ?>" name="luonas" maxlength="50"/>
+            <div class="text-right"><input class="form-control w-50" type="text" id="search_pronas" value="<?php echo $form['pronas']; ?>" name="pronas" maxlength="2"/></div>
+        </div>
+        <div class="d-flex flex-nowrap">
+            <label for="counas" class="control-label w-50"><?php echo $script_transl['counas']; ?> </label>
+            <?php
+                $gForm->selectFromDB('country', 'counas', 'iso', $form['counas'], 'iso', 1, ' - ', 'name');
+            ?>
+        </div>
+        <div class="d-flex flex-nowrap">
+            <label for="codfis" class="control-label w-50"><a href="https://telematici.agenziaentrate.gov.it/VerificaCF/Scegli.do?parameter=verificaCf" target="blank"><?php echo $script_transl['codfis']; ?></a></label>
+            <input class="form-control w-50" type="text" value="<?php echo $form['codfis']; ?>" name="codfis" id="codfis" maxlength="16"/>
+        </div>
+        <div class="d-flex flex-nowrap">
+            <label for="telefo" class="control-label w-50"><?php echo $script_transl['telefo']; ?> </label>
+            <input class="form-control w-50" type="text" value="<?php echo $form['telefo']; ?>" name="telefo" maxlength="50"/>
+        </div>
+        <div class="d-flex flex-nowrap">
+            <label for="cell" class="control-label w-50"><?php echo $script_transl['cell']; ?> </label>
+            <input class="form-control w-50" type="text" value="<?php echo $form['cell']; ?>" name="cell" maxlength="50"/>
+        </div>
+        <div class="d-flex flex-nowrap">
+            <label for="e_mail" class="control-label w-50"><?php echo $script_transl['e_mail']; ?></label>
+            <input class="form-control w-50" type="text" value="<?php echo $form['e_mail']; ?>" name="e_mail" id="email" maxlength="60"/>
+        </div>
+        <div class="d-flex flex-nowrap">
+            <label for="iban" class="control-label w-50"><?php echo $script_transl['iban']; ?> </label>
+            <input class="form-control w-50" type="text" value="<?php echo $form['iban']; ?>" name="iban" id="iban" maxlength="27" />
+        </div>
+        <div class="d-flex flex-nowrap">
+            <label for="start_date" class="control-label w-50"><?php echo $script_transl['start_date']; ?> </label>
+            <input class="form-control w-50" type="text" value="<?php echo $form['start_date']; ?>" name="start_date" id="start_date" maxlength="10" />
+        </div>
+        <div class="d-flex flex-nowrap">
+            <label for="end_date" class="control-label w-50"><?php echo $script_transl['end_date']; ?> </label>
+            <input class="form-control w-50" type="text" value="<?php echo $form['end_date']; ?>" name="end_date" id="end_date" maxlength="10" />
+        </div>
+        <div class="d-flex flex-nowrap">
+            <label for="last_hourly_cost" class="control-label w-50"><?php echo $script_transl['last_hourly_cost']; ?> </label>
+            <input class="form-control w-50" type="number" value="<?php echo $form['last_hourly_cost']; ?>" name="last_hourly_cost" id="last_hourly_cost"  min="0" max="1000" step="0.01" />
+        </div>
+        <div class="d-flex flex-nowrap">
+            <label for="status" class="control-label w-50"><?php echo $script_transl['status']; ?> </label>
+            <?php
+                $gForm->variousSelect('status', $script_transl['status_value'], $form['status'], '', false);
+            ?>
+        </div>
+        <div class="d-flex flex-nowrap">
+            <label for="annota" class="control-label w-50"><?php echo $script_transl['annota']; ?> </label>
+            <textarea class="form-control w-50" name="annota" rows="2" cols="50" maxlength="3000"><?php echo $form['annota']; ?></textarea>
+        </div>
     </div>
-  </div>
-  </div>
-</div>
+    <input class="btn btn-warning float-right" name="Submit" type="submit" value="<?php echo ucfirst($script_transl[$toDo]); ?>">          
 </form>
 <?php
 require("../../library/include/footer.php");
