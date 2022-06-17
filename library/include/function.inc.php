@@ -1646,7 +1646,6 @@ class GAzieForm {
         if (!empty($refresh)) {
             $refresh = ' onchange="this.form.hidden_req.value=\'' . $refresh . '\'; this.form.submit();"';
         }
-
         echo '<select name="' . $name . '_D" id="' . $name . '_D" class="' . $class . '"' . $refresh . '>';
         for ($i = 1; $i <= 31; $i++) {
             $selected = "";
@@ -1665,18 +1664,18 @@ class GAzieForm {
             $month_name = ucwords(strftime("%B", mktime(0, 0, 0, $i, 1, 0)));
             echo '		<option value="' . $i . '"' . $selected . '>' . $month_name . '</option>';
         }
-        echo '</select>
-	  		<input type="text" name="' . $name . '_Y" id="' . $name . '_Y" value="' . $year . '" class="' . $class . '"  maxlength="4" size="4"' . $refresh . ' />
-	  		<a class="btn btn-default btn-sm" href="#" onClick="setDate(\'' . $name . '\'); return false;" title="' . $script_transl['changedate'] . '" name="anchor" id="anchor">
-				<i class="glyphicon glyphicon-calendar"></i>
-			</a>';
+        echo '</select>';
+	  	echo '<input type="text" name="' . $name . '_Y" id="' . $name . '_Y" value="' . $year . '" class="' . $class . '"  maxlength="4" size="4"' . $refresh . ' />';
+	  	// echo '<a class="btn btn-default btn-sm" href="#" onClick="setDate(\'' . $name . '\'); return false;" title="' . $script_transl['changedate'] . '" name="anchor" id="anchor">
+		// 		<i class="glyphicon glyphicon-calendar"></i>
+		// 	</a>';
     }
 
     function variousSelect($name, $transl, $sel, $class = 'FacetSelect', $bridge = true, $refresh = '', $maxlenght = false, $style = '',$empty=false) {
         if (!empty($refresh)) {
             $refresh = "onchange=\"this.form.hidden_req.value='$refresh'; this.form.submit();\"";
         }
-        echo "<select name=\"$name\" id=\"$name\" class=\"$class\" $refresh $style>\n";
+        echo "<select name=\"$name\" id=\"$name\" class='form-control w-50 \"$class\"' $refresh $style>\n";
         if ($empty) {
             echo "\t\t <option value=\"$empty\"></option>\n";
         }
@@ -1749,7 +1748,7 @@ class GAzieForm {
         if (!empty($val_hiddenReq)) {
             $refresh = "onchange=\"this.form.hidden_req.value='$val_hiddenReq'; this.form.submit();\"";
         }
-        $acc .= "\t <select id=\"$name\" name=\"$name\" class=\"$class\" $refresh $style>\n";
+        $acc .= "\t <select id=\"$name\" name=\"$name\" class='form-control w-50 \"$class\"' $refresh $style>\n";
         if ($empty) {
             $acc .= "\t\t <option value=\"\"></option>\n";
         }

@@ -297,53 +297,54 @@ setInterval(menu_check_from_modules,<?php echo intval((int)$period*60000);?>);
 			</div>
 		</div>
         <div class="wrapper">
-            <header class="main-header">
-                <!-- Logo -->
-                <a href="../../modules/root/admin.php" class="logo company-color-logo">
-                    <!-- mini logo for sidebar mini 50x50 pixels -->
+            <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" style="z-index: 3000;">
+                <a class="navbar-brand" href="../../modules/root/admin.php">
                     <span class="logo-mini">
-                        <img src="../../modules/root/view.php?table=aziend&amp;value=<?php echo $admin_aziend["company_id"]; ?>" height="30" alt="Logo" border="0" title="<?php echo $admin_aziend["ragso1"]; ?>" />
-                    </span>
-                    <!-- logo for regular state and mobile devices -->
-                    <span class="logo-lg">
-                        <img src="../../modules/root/view.php?table=aziend&amp;value=<?php echo $admin_aziend["company_id"]; ?>" height="30" alt="Logo" border="0" title="<?php echo $admin_aziend["ragso1"]; ?>" />
-                        &nbsp;
-<?php echo substr($admin_aziend["ragso1"], 0, 16); ?>
+                        <img src="../../modules/root/view.php?table=aziend&amp;value=1" height="30" alt="Logo" border="0" title="AZIENDA DI PROVA">
                     </span>
                 </a>
-                <!-- Header Navbar: style can be found in header.less -->
-                <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                    <a class="navbar-brand" href="#">Navbar</a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav mr-auto">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Link</a>
-                        </li>
-                        <li class="nav-item dropdown">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" onclick="toggle_sidebar()">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item dropdown user user-menu">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Dropdown
+                                <img src="<?php echo '../root/view.php?table=admin&field=user_name&value=' . $admin_aziend["user_name"]; ?>" class="user-image" alt="User Image">
+                                <span class="hidden-xs"><?php echo $admin_aziend['user_firstname'] . ' ' . $admin_aziend['user_lastname']; ?></span>
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Something else here</a>
+                                <a class="dropdown-item" href="http://localhost:8002/modules/config/admin_utente.php?user_name=amministratore&Update">Profilo</a>
+                                <a class="dropdown-item" href="http://localhost:8002/modules/root/login_user.php?tp=gaz">Logout</a>
                             </div>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-                        </li>
-                        </ul>
-                    </div>
-                    </nav>
-            </header>
+                    </ul>
+                    <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+                        <span class="sr-only">Toggle navigation</span>
+                    </a>
+                </div>
+            </nav>
+
+            <script>
+                
+                function toggle_sidebar(){
+
+                    var check_sidebar_mob=$(".sidebar-mini").hasClass("sidebar-open");
+
+                    if (check_sidebar_mob) {
+
+                        $(".sidebar-mini").removeClass("sidebar-open");
+
+                    } else {
+
+                        $(".sidebar-mini").addClass("sidebar-open");
+
+                    }
+
+                }
+                
+            </script>
+
             <!-- Left side column. contains the logo and sidebar -->
             <aside class="main-sidebar">
                 <!-- sidebar: style can be found in sidebar.less -->

@@ -36,7 +36,7 @@ require("../../modules/root/lang.".$admin_aziend['lang'].".php");
 $url = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING']);
 if ( $url!='ruburl.php' ) {
 ?>
-    <footer class="main-footer">
+    <footer class="main-footer bg-light" style="border-top:0">
         <?php
          // mostra le variabili $global e $server nella pagina
          echo "<div>";

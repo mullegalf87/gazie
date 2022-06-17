@@ -290,9 +290,9 @@ function HeadMain($idScript = '', $jsArray = '', $alternative_transl = false, $c
     </section>
     </aside>
 </form>
-    <div class="content-wrapper">
+    <div class="content-wrapper p-0">
       
-        <section class="content">
+        <section class="content" style="background-color:white">
 <?php
     }
     if (!isset($translated_script)) {
