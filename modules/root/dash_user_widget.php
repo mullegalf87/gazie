@@ -10,7 +10,7 @@ if ($t > 4 && $t <= 13) {
     $msg = $script_transl['night'];
 }
 ?>
-<div class="panel panel-default col-md-12" >
+<div class="panel-default w-100" style="height:310px;">
     <div>
         <?php echo ucfirst($msg) . " " . $admin_aziend['user_firstname'] . ' (ip=' . $admin_aziend['last_ip'] . ')'; ?>
 		<a class="pull-right dialog_grid" id_bread="<?php echo $grr['id_bread']; ?>" style="cursor:pointer;"><i class="glyphicon glyphicon-cog"></i></a>

@@ -1,4 +1,4 @@
-<div class="panel panel-info col-md-12" >
+<div class="panel-info" style="height:310px;">
     <div class="box-header company-color">
 		<a class="pull-right dialog_grid" id_bread="<?php echo $grr['id_bread']; ?>" style="cursor:pointer;"><i class="glyphicon glyphicon-cog"></i></a>
 	</div>

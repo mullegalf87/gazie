@@ -44,7 +44,7 @@ function selectCompany($name, $val, $strSearch = '', $val_hiddenReq = '', $mesg=
 }
 
 ?>
-<div class="panel panel-success col-md-12" >
+<div class="panel-success w-100" style="height:310px;">
     <div class="box-header company-color">
 		<a class="pull-right dialog_grid" id_bread="<?php echo $grr['id_bread']; ?>" style="cursor:pointer;"><i class="glyphicon glyphicon-cog"></i></a>
         <h4 class="box-title"><?php echo $script_transl['company'] ?></h4>    

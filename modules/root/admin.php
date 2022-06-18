@@ -173,7 +173,7 @@ $(function(){
 	}
 });
 </script>
-<div class="container-fluid gaz-body">
+<div class="container-fluid gaz-body p-0">
   <form method="POST" name="gaz_form">
     <input type="hidden" value="<?php echo $form['hidden_req'];?>" name="hidden_req" />
     <div class="container" style="width: auto;">
@@ -218,12 +218,14 @@ $(function(){
             <?php
         }
 $get_widgets = gaz_dbi_dyn_query("*", $gTables['breadcrumb'],"exec_mode=2 AND adminid='".$admin_aziend['user_name']."'", 'position_order');
-echo '<div id="sortable" class="vertical-align">';
+echo '<div id="sortable" class="d-flex">';
 while ( $grr = gaz_dbi_fetch_array($get_widgets) ) {
 	$col_lg=(!empty($grr['grid_class']))?$grr['grid_class']:''; // se si mette sulla colonna del db "col-lg-12" il widget occuperà l'intera larghezza con "col-lg-3" solo 1/4 del rigo della dashboard
-	echo '<div class="col-xs-12 col-md-6 '.$col_lg.' text-center" id="position-'.$grr['id_bread'].'">';
+	echo '<div class="col-md-6">';
+	echo '<div class="card text-center m-3" id="position-'.$grr['id_bread'].'">';
 	require('../'.$grr['file']);
-	echo '</div>'; 
+	echo '</div>';
+	echo '</div>';
 }
 echo '</div>';
 

@@ -143,11 +143,17 @@ body.hold-transition .main-header .logo {
 /* Content */
 .content {
   min-height: 250px;
-  padding: 15px;
+  /* padding: 15px; */
   margin-right: auto;
   margin-left: auto;
-  padding-left: 15px;
-  padding-right: 15px;
+  /* padding-left: 15px;
+  padding-right: 15px; */
+  flex: 1; 
+  position: absolute; 
+  right: 0; 
+  bottom: 0; 
+  left: 0;
+  height: calc(100% - 56.77px);
 }
 /* H1 - H6 font */
 h1,
@@ -417,9 +423,9 @@ a:focus {
 .main-sidebar,
 .left-side {
   position: absolute;
-  top: 0;
+  top: 56.77px;
   left: 0;
-  padding-top: 50px;
+  /* padding-top: 50px; */
   min-height: 100%;
   width: 230px;
   z-index: 810;
