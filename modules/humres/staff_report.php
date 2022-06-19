@@ -206,7 +206,7 @@ $(function() {
                 echo "<td align=\"center\">";
 				if (intval($r['codcon']) > 0){					
 					?>
-					<button title="Collaboratore non cancellabile perché ha movimenti contabili" class="btn btn-xs btn-default btn-elimina disabled"><i class="glyphicon glyphicon-remove"></i></button>
+					<button title="Collaboratore non cancellabile perchï¿½ ha movimenti contabili" class="btn btn-xs btn-default btn-elimina disabled"><i class="glyphicon glyphicon-remove"></i></button>
 					<?php
 				} else {
 				?>

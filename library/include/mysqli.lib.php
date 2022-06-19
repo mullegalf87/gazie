@@ -560,6 +560,7 @@ function gaz_dbi_table_update($table, $id, $newValue) {
     * $newValue - array associativo del tipo nome_colonna=>valore con i valori da inserire
     */
    global $gTables;
+ 
    $field_results = gaz_dbi_query("SELECT * FROM " . $gTables[$table] . " LIMIT 1");
    $field_meta = gaz_dbi_get_fields_meta($field_results);
    $query = "UPDATE " . $gTables[$table] . ' SET ';
