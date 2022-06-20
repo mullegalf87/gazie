@@ -141,7 +141,7 @@ if (isset($_POST['Insert']) || isset($_POST['Update'])) {   //se non e' il primo
         $form['legrap_pf_nome'] = trim($form['ragso2']);
         $form['start_date'] = gaz_format_date($form['start_date'], true);
         $form['end_date'] = gaz_format_date($form['end_date'], true);
-        //gaz_dbi_table_insert=>aggiunge dato alla tabella portandosi i dati dall'array form
+        //gaz_dbi_table_insert=>aggiunge dato alla tabella portandosi i dati dall'array form (inserimento in tre tabelle)
         if ($toDo == 'insert') {
             if ($form['id_anagra'] > 0) {
                 gaz_dbi_table_insert('clfoco', $form);
@@ -150,7 +150,7 @@ if (isset($_POST['Insert']) || isset($_POST['Update'])) {   //se non e' il primo
                 $anagrafica->insertPartner($form);
                 gaz_dbi_table_insert('staff', $form);
             }
-        //gaz_dbi_table_update=>modificat dati della tabella portandosi i dati dall'array form
+        //gaz_dbi_table_update=>modificat dati della tabella portandosi i dati dall'array form (modifica in due tabelle)
         } elseif ($toDo == 'update') {
             $anagrafica->updatePartners($form['codice'], $form);
             gaz_dbi_table_update('staff',array('id_clfoco',$form['codice']), $form);
@@ -242,6 +242,8 @@ $(function () {
 
 </script>
 ";
+echo '<div align="center" class="FacetFormHeaderFont">
+Inserisci nuovo lavoratore</div>';
 echo "<form method=\"POST\" name=\"form\">\n";
 echo "<input type=\"hidden\" name=\"ritorno\" value=\"" . $form['ritorno'] . "\">\n";
 echo "<input type=\"hidden\" value=\"" . $form['hidden_req'] . "\" name=\"hidden_req\" />\n";
@@ -249,7 +251,7 @@ echo "<input type=\"hidden\" value=\"" . $form['id_anagra'] . "\" name=\"id_anag
 echo "<input type=\"hidden\" name=\"" . ucfirst($toDo) . "\" value=\"\">";
 $gForm = new GAzieForm();
 if ($toDo == 'insert') {
-    echo "<div align=\"center\" class=\"FacetFormHeaderFont\">" . $script_transl['ins_this'] . ' con ' . $script_transl['codice'] . " n° <input type=\"text\" name=\"codice\" value=\"" . $form['codice'] . "\" align=\"right\" maxlength=\"6\" /></div>\n";
+    // echo "<div align=\"center\" class=\"FacetFormHeaderFont\">" . $script_transl['ins_this'] . ' con ' . $script_transl['codice'] . " n° <input type=\"text\" name=\"codice\" value=\"" . $form['codice'] . "\" align=\"right\" maxlength=\"6\" /></div>\n";
 } else {
     echo "<div align=\"center\" class=\"FacetFormHeaderFont\">" . $script_transl['upd_this'] . " '" . $form['codice'] . "'";
     echo "<input type=\"hidden\" value=\"" . $form['codice'] . "\" name=\"codice\" /></div>\n";
@@ -287,13 +289,11 @@ if (!empty($msg)) {
             padding-right:15px;
         }
     </style>
-
-    <div class="container mt-3" id="home">
-        <h3 class="mb-3">Inserisci nuovo lavoratore</h3>
-        <!-- <div class="d-flex flex-nowrap mb-3">
+    <div class="p-3 bg-light" id="home">
+        <div class="d-flex flex-nowrap mb-3">
             <label for="codice" class="control-label w-50"><?php echo $script_transl['ins_this']." con ".$script_transl['codice']." n° "; ?> *</label>
             <input class="form-control w-50" type="text" value="<?php echo $form['codice']; ?>" name="codice" maxlength="6"/>
-        </div> -->
+        </div>
         <div class="d-flex flex-nowrap mb-3">
             <label for="ragso1" class="control-label w-50"><?php echo $script_transl['ragso1']; ?> *</label>
             <input class="form-control w-50" type="text" value="<?php echo $form['ragso1']; ?>" name="ragso1" minlenght="2" maxlength="50"/>

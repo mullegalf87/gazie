@@ -2060,7 +2060,7 @@ class recordnav {
         }
         if (($this->count) <= $this->passo) {
             // non visualizzo la barra di navigazione dei record
-            echo "<div align=\"center\"><font class=\"FacetFormDataFont\">Num. record = $this->count</font></div>";
+            // echo "<div align=\"center\"><font class=\"FacetFormDataFont\">Num. record = $this->count</font></div>";
         } else {
             echo "<div align=\"center\"><font class=\"FacetFormDataFont\">Num. record = $this->count</font></div>";
             echo "<div align=\"center\">";
