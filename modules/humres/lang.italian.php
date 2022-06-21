@@ -102,8 +102,9 @@ $strScript = array("admin_staff.php" =>
 			"IBAN" => "",
             "Telefono" => "",
             "C.F." => "",
-            "Visualizza <br /> e/o stampa"=>"",
-            "Cancella" => "")
+            "Comandi"=>"")
+            // "Visualizza <br /> e/o stampa"=>"",
+            // "Cancella" => "")
     ),
     "delete_staff.php" =>
     array('title' => 'Cancella l\'anagrafica del collaboratore',

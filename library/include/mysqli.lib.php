@@ -24,6 +24,8 @@
   --------------------------------------------------------------------------
  */
 
+ //DARIO
+ //si connette al server
 function connectIsOk() {
    global $Host, $User, $Password, $link;
    $result = True;
@@ -32,6 +34,8 @@ function connectIsOk() {
    return $result;
 }
 
+//DARIO
+//fa passare la query nel db
 function gaz_dbi_query($query, $ar = false) {
    global $link;
    debug_query($query);
@@ -44,6 +48,8 @@ function gaz_dbi_query($query, $ar = false) {
    }
 }
 
+//DARIO
+ //si connette al db
 function connectToDB() {
    global $link, $Host, $Database, $User, $Password;
    $link = @mysqli_connect($Host, $User, $Password, $Database, $Port) or die("Was not found, << $Database >>  database! <br />
@@ -490,12 +496,15 @@ function gaz_dbi_parse_post($table) {
    return $acc;
 }
 
+//DARIO
+//inserisce dati del collaboratore
 function gaz_dbi_table_insert($table, $value) {
    /*
     * $table - il nome della tabella all'interno dell'array $gTables
     * $value - array associativo del tipo nome_colonna=>valore con i valori da inserire
     */
    global $link, $gTables;
+   
    $first = true;
    $auto_increment = false;
    $colName = '';
@@ -553,6 +562,8 @@ function gaz_dbi_table_insert($table, $value) {
    };
 }
 
+//DARIO
+//modifica dati del collaboratore
 function gaz_dbi_table_update($table, $id, $newValue) {
    /*
     * $table - il nome della tabella all'interno dell'array $gTables
@@ -1112,4 +1123,18 @@ function debug_query($query) {
 		}
 	}
 }
+
+// DARIO
+//elimina un worker
+if($_POST['action'] == 'call_this') {
+   delete_worker();
+ }
+function delete_worker(){
+   $query="SELECT * FROM gaz_001staff";
+   echo $query;
+
+   // $result = gaz_dbi_query($query) or gaz_die ( $query, "1014", __FUNCTION__ );
+   // return $result;
+}
+
 ?>

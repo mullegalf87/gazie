@@ -72,38 +72,48 @@ $script_transl = HeadMain();
 ?>
 <script>
 $(function() {
-	$("#dialog_delete").dialog({ autoOpen: false });
+	// $("#dialog_delete").dialog({ autoOpen: false });
 	$('.dialog_delete').click(function() {
-		$("p#idcodice").html($(this).attr("ref"));
-		$("p#iddescri").html($(this).attr("staffdes"));
+		// $("p#idcodice").html($(this).attr("ref"));
+		// $("p#iddescri").html($(this).attr("staffdes"));
 		var id = $(this).attr('ref');
-		$( "#dialog_delete" ).dialog({
-			minHeight: 1,
-			width: "auto",
-			modal: "true",
-			show: "blind",
-			hide: "explode",
-			buttons: {
-				delete:{ 
-					text:'Elimina', 
-					'class':'btn btn-danger delete-button',
-					click:function (event, ui) {
-					$.ajax({
-						data: {'type':'staff',ref:id},
-						type: 'POST',
-						url: '../humres/delete.php',
-						success: function(output){
-		                    //alert(output);
-							window.location.replace("./staff_report.php");
-						}
-					});
-				}},
-				"Non eliminare": function() {
-					$(this).dialog("close");
-				}
-			}
-		});
-		$("#dialog_delete" ).dialog( "open" );  
+        console.log(id);
+        $.ajax({
+            data: {'type':'staff',ref:id},
+            type: 'POST',
+            url: '../humres/delete.php',
+            success: function(output){
+                //alert(output);
+                window.location.replace("./staff_report.php");
+            }
+        });
+		// $( "#dialog_delete" ).dialog({
+		// 	minHeight: 1,
+		// 	width: "auto",
+		// 	modal: "true",
+		// 	show: "blind",
+		// 	hide: "explode",
+		// 	buttons: {
+		// 		delete:{ 
+		// 			text:'Elimina', 
+		// 			'class':'btn btn-danger delete-button',
+		// 			click:function (event, ui) {
+		// 			$.ajax({
+		// 				data: {'type':'staff',ref:id},
+		// 				type: 'POST',
+		// 				url: '../humres/delete.php',
+		// 				success: function(output){
+		//                     //alert(output);
+		// 					window.location.replace("./staff_report.php");
+		// 				}
+		// 			});
+		// 		}},
+		// 		"Non eliminare": function() {
+		// 			$(this).dialog("close");
+		// 		}
+		// 	}
+		// });
+		// $("#dialog_delete" ).dialog( "open" );  
 	});
 });
 </script>
@@ -115,18 +125,18 @@ $(function() {
     }
     ?>
     <form method="GET" action="<?php echo $_SERVER['PHP_SELF']; ?>">
-        <div style="display:none" id="dialog_delete" title="Conferma eliminazione">
+        <!-- <div style="display:none" id="dialog_delete" title="Conferma eliminazione">
             <p><b>lavoratore:</b></p>
             <p>codice:</p>
             <p class="ui-state-highlight" id="idcodice"></p>
             <p>Descrizione</p>
             <p class="ui-state-highlight" id="iddescri"></p>
-        </div>
+        </div> -->
         <div class="" style="border:0">
             <div class="bg-light p-3" style="height:70px">
             <input id="search" type="text" class="form-control"  placeholder="Search..." style="border: 0px;">
             </div>
-            <table class="table table-condensed table-responsive">
+            <table class="table table-responsive">
                 <tr>        
                     <?php
                     $groupby= "codice";
@@ -145,11 +155,11 @@ $(function() {
                     ?>
                 </tr>
                 <?php
-                echo "<tbody id='table'>";
+                echo "<tbody id='table' >";
                 while ($r = gaz_dbi_fetch_array($result)) {
                     echo "<tr>";
                     // Colonna codice staffe
-                    echo "<td align=\"center\"><a class=\"btn btn-xs btn-default\" href=\"admin_staff.php?codice=" . substr($r["id_clfoco"], 3) . "&Update\"><i class=\"glyphicon glyphicon-edit\"></i>&nbsp;" . intval($r["id_contract"]) . "</a> &nbsp</td>";
+                    echo "<td align=\"center\">" . $r["id_contract"] . "</td>";
                     // Colonna cognome
                     echo "<td>" . $r["ragso1"] . " &nbsp;</td>";
                     // Colonna nome
@@ -190,23 +200,31 @@ $(function() {
                     // colonna fiscali
                     echo "<td align=\"center\">" . $r['codfis'] . "</td>";
                     // colonna contabilità
-                    echo '<td align="center"><a class="btn btn-xs btn-default" href="../contab/select_partit.php?id=' . $r["id_clfoco"] . '" target="_blank">
-                        <i class="glyphicon glyphicon-check"></i>&nbsp;<i class="glyphicon glyphicon-print"></i>
-                        </a></td>';
+                    echo '<td align="center">
+                    <div class="dropdown">
+                    <button class="btn btn-sm btn-icon" type="button" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="bx bx-menu"></span>
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
+                    <a href=\'admin_staff.php?codice=' . substr($r["id_clfoco"], 3) . '&Update\' class="dropdown-item">Modifica</a>
+                    <a href="../contab/select_partit.php?id=' . $r["id_clfoco"] . '" class="dropdown-item">Stampa</a>
+                    <a class="dropdown-item dialog_delete" ref="'.$r["id_clfoco"].'" staffdes="<?php echo $r[\'ragso1\']; ?>" >Elimina</a></div>
+                    </div>
+                    </td>';
                     // colonna stampa privacy
-                    echo "<td align=\"center\">";
-                    if (intval($r['codcon']) > 0){					
+                    // echo "<td align=\"center\">";
+                    // if (intval($r['codcon']) > 0){					
                         ?>
-                        <button title="Collaboratore non cancellabile perch� ha movimenti contabili" class="btn btn-xs btn-default btn-elimina disabled"><i class="glyphicon glyphicon-remove"></i></button>
+                        <!-- <button title="Collaboratore non cancellabile perch� ha movimenti contabili" class="btn btn-xs btn-default btn-elimina disabled"><i class="glyphicon glyphicon-remove"></i></button> -->
                         <?php
-                    } else {
+                    // } else {
                 ?>
-                <a class="btn btn-xs btn-default btn-elimina dialog_delete" ref="<?php echo $r['id_clfoco'];?>" staffdes="<?php echo $r['ragso1']; ?>">
+                 <!-- <a class="btn btn-xs btn-default btn-elimina dialog_delete" ref="<?php echo $r['id_clfoco'];?>" staffdes="<?php echo $r['ragso1']; ?>">
                     <i class="glyphicon glyphicon-remove"></i>
-                </a>
+                </a>  -->
                 <?php
-                    }
-                    echo "</td></tr>\n";				
+                    // }
+                    echo "</tr>\n";				
                 }
                 echo "</tbody>";
                 ?>  
@@ -216,7 +234,7 @@ $(function() {
                     $("#table tr").filter(function() {
                         $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
                     });
-                });
+                });       
                 </script>
             </table>
         </div>

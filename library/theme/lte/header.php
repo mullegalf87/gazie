@@ -87,12 +87,18 @@ if (isset( $scriptname) && $scriptname != $prev_script && $scriptname != 'admin.
 		<link rel="apple-touch-icon" href="data:image/x-icon;base64,<?php echo $ico114?>"  type="image/x-icon">
 		<link rel="apple-touch-startup-image" href="data:image/x-icon;base64,<?php echo $ico114?>"  type="image/x-icon">
 		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="data:image/x-icon;base64,<?php echo $ico114?>"  type="image/x-icon" />
-    <link href="../../library/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="../../library/theme/lte/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="../../library/theme/lte/ionicons/css/ionicons.min.css">
-    <link rel="stylesheet" href="../../library/theme/lte/adminlte/dist/css/AdminLTE.css">
-    <link rel="stylesheet" href="../../library/theme/lte/adminlte/dist/css/skins/skin-gazie.css"> <!-- _all-skins.min.css">-->
-    <link href="../../js/jquery.ui/jquery-ui.css" rel="stylesheet">
+        <link rel="stylesheet" href="../../library/theme/lte/font-awesome/css/font-awesome.min.css">
+        <link rel="stylesheet" href="../../library/theme/lte/ionicons/css/ionicons.min.css">
+        <link rel="stylesheet" href="../../library/theme/lte/adminlte/dist/css/AdminLTE.css">
+        <link rel="stylesheet" href="../../library/theme/lte/adminlte/dist/css/skins/skin-gazie.css"> <!-- _all-skins.min.css">-->
+        <link href="../../js/jquery.ui/jquery-ui.css" rel="stylesheet">
+        <!-- bootstrap -->
+        <link href="../../library/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+        <script src="../../library/bootstrapjs/bootstrap.min.js"></script>
+        <!-- popper -->
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js'></script>
+        <!-- boxicons -->
+        <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/boxicons@2.0.2/css/boxicons.min.css'>
     <style>
         .content-wrapper{
             position:relative;
@@ -101,6 +107,7 @@ if (isset( $scriptname) && $scriptname != $prev_script && $scriptname != 'admin.
         form{
             background:white;
         }
+       
     </style>
 		<script src="../../js/jquery/jquery.js"></script>
 

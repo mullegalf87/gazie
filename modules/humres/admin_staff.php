@@ -141,6 +141,7 @@ if (isset($_POST['Insert']) || isset($_POST['Update'])) {   //se non e' il primo
         $form['legrap_pf_nome'] = trim($form['ragso2']);
         $form['start_date'] = gaz_format_date($form['start_date'], true);
         $form['end_date'] = gaz_format_date($form['end_date'], true);
+        //DARIO
         //gaz_dbi_table_insert=>aggiunge dato alla tabella portandosi i dati dall'array form (inserimento in tre tabelle)
         if ($toDo == 'insert') {
             if ($form['id_anagra'] > 0) {
@@ -150,6 +151,7 @@ if (isset($_POST['Insert']) || isset($_POST['Update'])) {   //se non e' il primo
                 $anagrafica->insertPartner($form);
                 gaz_dbi_table_insert('staff', $form);
             }
+        //DARIO    
         //gaz_dbi_table_update=>modificat dati della tabella portandosi i dati dall'array form (modifica in due tabelle)
         } elseif ($toDo == 'update') {
             $anagrafica->updatePartners($form['codice'], $form);
